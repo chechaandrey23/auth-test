@@ -14,7 +14,7 @@ const routers = new Router();
 
 routers.post('/sign_up', body('email').isEmail(), body('password').isLength({min: 3, max: 32}), routeSignUp);
 routers.post('/login', body('email').isEmail(), body('password').isLength({min: 3, max: 32}), routeLogin);
-routers.post('/logout', middlewareChechRefreshToken, routeLogout);
+routers.post('/logout', middlewareChechRefreshToken, middlewareChechAccessToken, routeLogout);
 routers.post('/refresh', middlewareChechRefreshToken, routeRefresh);
 routers.get('/me:chunk', middlewareChechRefreshToken, middlewareChechAccessToken, routeMe);
 
